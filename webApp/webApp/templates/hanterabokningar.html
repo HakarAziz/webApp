@@ -1,0 +1,58 @@
+﻿<!--  
+
+ hanterabokningar.html , för admin bara.
+ rolig "scope" här, designen är annorlunda från cards.
+
+--> 
+
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+{% block body %}
+
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">BokningsID</th>
+            <th scope="col">Titel</th>
+            <th scope="col">Författare</th>
+            <th scope="col">Bokare</th>
+            <th scope="col">Bokningsdatum</th>
+            <th scope="col">Återlämningsdatum</th>
+            <th scope="col">Bild</th>
+            <th scope="col">Hantera</th>
+          </tr>
+        </thead>
+        <tbody>
+	{% for data in Data_books %}
+	{% set the_var = data.idBooks|string %}
+	{% set the_var5 = data.Image_name|string %}
+	<tr>
+            <th scope="row">{{data.idBokningar}}</th>
+            <td>{{data.Name}}</td>
+            <td>{{data.Author}}</td>
+            <td>{{data.User}}</td>
+            <td>{{data.Bok_booked_datumSTART}}</td>
+            <td>{{data.Bok_booked_datumEND}}</td>
+            <td><img class="img_liten" src="{{ url_for('static', filename=the_var5) }}" />
+</td>
+            <td><form action="{{ url_for('bokningar') }}" form method="POST"><a href="{{ url_for('avbokning', idBooks=data.idBooks, bookName = data.Name)}}" class="btn btn-primary" >Ta bort bokning</a></form></td>
+          </tr>
+          {% endfor %}
+	</tbody>
+        </table>
+{%endblock%}

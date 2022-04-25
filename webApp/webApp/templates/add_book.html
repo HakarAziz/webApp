@@ -1,0 +1,43 @@
+﻿<!--  
+
+add_book.html helt enkelt.
+Innehåller inputs form osv.
+
+--> 
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+ 
+<center>
+<div class="login_div">
+<h2>Lägg till en bok</h2><br>
+<form action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data">
+    <input type="text" class="form-control" name="Title" placeholder="Titel på bok">  <br>
+    <input type="text" class="form-control" name="Author" placeholder="Författare"><br>
+    <input type="text" class="form-control" name="Publisher" placeholder="Bokförlag">
+    <div>
+       <br>
+       <input name="image" class="form-control form-control-lg" id="formFileLg" type="file" value="Välj bild">
+    </div>    
+	<br>
+    <input type="submit" value="Lägg till" class="btn btn-primary btn-lg">
+</form>
+</div>
+</center>
+
+
+{%endblock%}

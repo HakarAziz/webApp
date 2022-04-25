@@ -1,0 +1,115 @@
+﻿<!--
+
+register.html , registrera en användare.. några text inputs och en knapp helt enkelt.
+
+-->
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+
+
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+<p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<style>
+    .konto {
+        font-size: 25px;
+        color: #0094FF;
+    }
+
+    .registerHeader {
+        color: #0094ff;
+        margin-left: 35%;
+    }
+
+    .bottom {
+        color: #236B8E;
+        font-style: oblique;
+        font-weight: bold;
+    }
+
+    .textbox {
+        padding: 10px 40px;
+        background-color: #ffffff;
+        text-color: #FFFFFF;
+        border-radius: 10px;
+        text-align: center;
+    }
+</style>
+
+<center>
+    <form action="#" method="POST">
+
+
+        <form action="{{ url_for('register') }}" method="post">
+
+
+            <div class="konto">REGISTERA ETT KONTO </div>
+            <table>
+
+
+                <tr>
+                    <td>
+                        <input type="text" name="username" placeholder="Användarnamn" class="textbox">
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <input type="password" name="password" placeholder="Lösenord" class="textbox">
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="text" name="Email" placeholder="E-mail" class="textbox">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <input type="text" name="personNummer" placeholder="PersonNR(19940804)" class="textbox">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Registrera" class="registerHeader">
+                    </td>
+                </tr>
+
+
+            </table>
+
+
+            <div class="konto">Har du redan ett konto? </div>
+
+            <table>
+                <tr>
+                    <a class="bottom" href="{{ url_for('login') }}"> Logga in</a>
+                </tr>
+            </table>
+
+        </form>
+    </form>
+
+</center>
+
+
+
+{%endblock%}
+

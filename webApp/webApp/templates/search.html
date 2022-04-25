@@ -1,0 +1,57 @@
+﻿<!--
+
+search.html , helt enkelt sökningsfunktionen som då visar när man söker på en bok eller författare.
+Så bara X antal kommer upp eller sådär..
+if satsen är ju i webbapp självklart.. 
+
+-->
+{%extends 'base.html'%}
+
+{% block head %}
+
+
+{%endblock%}
+
+
+{% block body %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+<p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<p>Hittade: {{Hits}} sökningar för {{ss}}!</p> 
+<div class="row">
+    {% for data_rows in Results %}
+    {% set the_var2 = data_rows.Bok_booked|string %}
+    {% set the_var3 = data_rows.Bok_reserved|string %}
+    {% set the_var5 = data_rows.Image_name|string %}
+
+        {% set the_var = data_rows.idBooks|string %} <!-- Omvandlar int till STR -->
+    <form action="{{ url_for('bokning', bokid=the_var) }}" form method="POST" class="col-md-4">
+        <div class="card text-center" style="width 14rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{data_rows.Name}}</h5>
+                <p class="card-text">{{data_rows.Author}}</p><br>
+
+                <div>
+                    {% set the_var = data_rows.idBooks|string %} <!-- Omvandlar int till STR -->
+                    <center>
+                        <img class="img_liten" src="{{ url_for('static', filename=the_var5) }}" />
+                    </center>
+                </div>						
+                {%if the_var2 == '1' or the_var3 == '1'%}
+                <p class="card-text">Status: Ej Tillgänglig </p>
+                {%else%}
+                <p class="card-text">Status: Tillgänglig</p>
+                {%endif%}
+               <a href="{{ url_for('bokning', bokid=the_var)}}" class="btn btn-primary" >Reserva och boka</a>   
+
+            </div>
+        </div>
+    </form>
+    {%endfor%}
+</div>
+{%endblock%}

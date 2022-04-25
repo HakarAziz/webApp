@@ -1,0 +1,42 @@
+﻿<!--  
+
+Hanterabocker för admin, där vi kan lägga till böcker.
+inputs, en bild och sådant som vi ska kunna skicka med.
+
+
+--> 
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form action="{{ url_for('add_book') }}" method="post" enctype="multipart/form-data">
+<p>L�gg till en bok<p>
+    <input type="text" name="Title" placeholder="Titel p� bok">  <br>
+    <input type="text" name="Author" placeholder="F�rfattare"><br>
+    <input type="text" name="Publisher" placeholder="Bokf�rlag">
+    <div>
+       <label for="formFileLg" class="form-label">V�lj en bild</label>
+       <input name="image" class="form-control form-control-lg" id="formFileLg" type="file">
+    </div>    
+    <a href="{{ url_for('add_book')}}" class="btn btn-primary" >L�gg till en bok</a>                                                                                                                                                                                                                              
+
+</form>
+<b>
+
+
+{%endblock%}

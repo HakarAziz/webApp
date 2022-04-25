@@ -1,0 +1,29 @@
+﻿<!--  
+
+Inte så mycket här, avbokning.html gör inte så mycket mer än är en funktion, möjligtvis hade vi kunnat ta bort denna.
+--> 
+
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+{% block body %}
+
+
+{%endblock%}
+
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+
+

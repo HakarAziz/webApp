@@ -1,0 +1,48 @@
+﻿<!--  
+
+bokning.html , sidan man kommer till när man reserverar men ej har bekräftat bokning än. Bara en knapp som gör detta och lite text info för användare..
+
+ 
+
+--> 
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+
+{%endblock%}
+
+
+{% block body %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+    <p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+	{% set the_var5 = data_om_boken.Image_name|string %}
+
+        <div class="container">
+          <div class="title">
+            <h1>Vill du boka denna boken?</h1>
+            <p> Boken är reserverad i 5 minuter från och med nu, klicka på "bekräfta bokning"för att färdigställa din bokning! </p>
+          </div>
+            <form action="{{ url_for('bokaboken') }}" form method="POST" class="col-md-4">
+              <div class="card text-center" style="width 14rem;">
+                <div class="card-body">
+                     {% set the_var = data_om_boken.idBooks|string %}
+                  <h5 class="card-title">{{data_om_boken.Name}}</h5>
+                  <p class="card-text">{{data_om_boken.Author}}</p><br>   
+                       <center>
+                            <img class="img" src="{{ url_for('static', filename=the_var5) }}" />
+                        </center>
+                        <br>   
+                       <a href="{{ url_for('bokaboken', idBooks=data_om_boken.idBooks)}}" class="btn btn-primary" >Bekräfta bokning</a>                                                                                                                                                                                                                           
+                </div>
+            </form>
+            </div>
+{%endblock%}
+

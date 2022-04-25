@@ -1,0 +1,67 @@
+﻿<!--
+
+
+login.html , bara några rutor och en knapp. Skriv in info, skicka och det är det.
+
+-->
+{%extends 'base.html'%}
+
+{% block head %}
+
+{%endblock%}
+
+
+
+
+{% block body %}
+
+<!--
+flask kollar om det finns flash mess, vi loopar igenom och printar.
+-->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+<p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<body>
+
+
+
+    <center>
+            <form action="{{ url_for('login') }}" method="POST">
+		<br><br>
+		<h2>Vänligen logga in</h2>
+		<br><br>
+		<div class="login_div">
+		<div class="mb-3">
+
+                <h4 class="form-label">Användarnamn</h4>
+    		 <input type="text" class="form-control" name="username">
+
+                </div>
+		
+		<div class="mb-3">
+		<br>
+    		<h4 class="form-label">Lösenord</h4>
+    		<input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  		</div>
+
+  		
+  		<input type="Submit" class="btn btn-primary btn-lg" value="Logga in">
+
+
+               <center>
+		    <br>
+                  <a class="bottom" href="{{ url_for('register') }}"> Registrera Konto</a>
+		</center>
+		
+        </form>
+    </center>
+
+</body>
+{%endblock%}
+

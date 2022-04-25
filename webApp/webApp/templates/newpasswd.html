@@ -1,0 +1,84 @@
+﻿<!--  
+
+newpasswd.html , för att kunna skapa en ny användare. Inputs för nytt lösenord, alla checkninar sker ju självklart i webbapplikationen.
+
+--> 
+
+{%extends 'base.html'%}
+
+{% block head %}
+
+
+{%endblock%}
+
+
+{% block body %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for msg in messages %}
+<p>{{msg}}</p>
+    {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<style>
+    .losen {
+        font-size: 25px;
+        color: #0094FF;
+    }
+
+    .registerHeader {
+        color: #0094ff;
+        margin-left: 35%;
+    }
+
+    .bottom {
+        color: #236B8E;
+        font-style: oblique;
+        font-weight: bold;
+    }
+
+    .textbox {
+        padding: 10px 40px;
+        background-color: #ffffff;
+        text-color: #FFFFFF;
+        border-radius: 10px;
+        text-align: center;
+    }
+</style>
+
+<center>
+    <form action="#" method="POST">
+        <form action="{{ url_for('newpasswd') }}" method="post">           
+            <div class="losen">Uppdatera eller ändra ditt lösenord </div>
+            <table>
+                <tr>
+                    <td>
+                        <input type="password" name="currentPasswd" placeholder="Nuvarande Lösenord" class="textbox">
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <input type="password" name="newPasswd1" placeholder="Ditt nya lösenord" class="textbox">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" name="newPasswd2" placeholder="Nya lösenordet igen" class="textbox">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Uppdatera" class="registerHeader">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </form>
+</center>
+
+
+{%endblock%}
